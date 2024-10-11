@@ -154,12 +154,17 @@ function reverse(){
 }
 
 function smallestLargest(){
+	var num1 = Number(document.getElementById("number1").value); 
+	var num2 = Number(document.getElementById("number2").value); 
+	var num3 = Number(document.getElementById("number3").value);
 	var arr =[];
-	arr.push(Number(document.getElementById("number1").value)); 
-	arr.push(Number(document.getElementById("number2").value)); 
-	arr.push(Number(document.getElementById("number3").value)); 
-	array = arr.sort((n1,n2)=> n1-n2
-	output("innerDiv",n1) : output("innerDiv",n2)
+	arr.push(num1);
+	arr.push(num2);
+	arr.push(num3);
+	arr.sort((n1,n2)=>n1-n2);
+	console.log(arr)
+	output("innerSpan1",arr[0]);
+	output("innerSpan2",arr[2]);	
 }
 
 
@@ -184,3 +189,142 @@ function isPrime(){
 		}
 	}
 }
+
+
+function dayInWeek(){
+	var number = Number(document.getElementById("number1").value);
+	switch(number){
+	case 1: output("innerSpan","Sunday")
+	break;
+
+	case 2: output("innerSpan","Monday")
+	break;
+
+	case 3: output("innerSpan","Tuesday")
+	break;
+
+	case 4: output("innerSpan","Wednesday")
+	break;
+
+	case 5: output("innerSpan","Thursday")
+	break;
+
+	case 6: output("innerSpan","Friday")
+	break;
+
+	case 7: output("innerSpan","Saturday")
+	break;
+
+	default: output("innerSpan","Wrong Day")
+	} 	
+}
+
+
+function simpleCalcAdd(){
+	var num1 = Number(document.getElementById("number1").value);
+	var num2 = Number(document.getElementById("number2").value);
+	var sum = num1 + num2;
+	output("innerSpan",sum);
+	output("innerSpan2",'<i class="fa-solid fa-plus"></i>');
+}
+function simpleCalcDiff(){
+	var num1 = Number(document.getElementById("number1").value);
+	var num2 = Number(document.getElementById("number2").value);
+	var diff = num1 - num2;
+	output("innerSpan",diff);
+	output("innerSpan2",'<i class="fa-solid fa-minus"></i>');
+}
+function simpleCalcMult(){
+	var num1 = Number(document.getElementById("number1").value);
+	var num2 = Number(document.getElementById("number2").value);
+	var mul = num1 * num2;
+	output("innerSpan",mul);
+	output("innerSpan2",'<i class="fa-solid fa-xmark"></i>');
+}
+function simpleCalcDivi(){
+	var num1 = Number(document.getElementById("number1").value);
+	var num2 = Number(document.getElementById("number2").value);
+	var div = num1 / num2;
+	output("innerSpan",div);
+	output("innerSpan2",'<i class="fa-solid fa-divide"></i>');
+}
+
+var arrayprint=[];
+function printNumberWL(numb,lim){
+	arrayprint.push(numb);
+	if(numb==lim){
+		output("innerDiv",arrayprint);
+		return 1;
+	}
+	else{
+		printNumberWL(numb + 1,lim)
+	}
+
+}
+
+
+function printNumber(){
+	for(i=1;i<=100;i++){
+		arrayprint.push(i);
+	}
+	output("innerDiv",arrayprint);
+}
+
+function factors(){
+	var number = Number(document.getElementById("number").value);
+	for(i=1;i<=number;i++){
+		if(number%i == 0){
+			arrayprint.push(i);
+		}
+	}
+	output("innerDiv",arrayprint);
+}
+
+
+function factorial(){
+	var number = Number(document.getElementById("number").value);
+	var factorial = 1;
+	for(i=1;i<=number;i++){
+		factorial = factorial * i;
+	}
+	output("innerDiv",factorial);
+}
+
+function firstLastDig(){
+	var number =document.getElementById("number").value; 
+	var flag = number.length;
+	var num = Number(number);
+	lastDig = num%10;
+	firstDig = Math.floor(num/(10**(flag-1)));
+	output("innerSpan1","The first Digit : "+firstDig);
+	output("innerSpan2","The last Digit : "+lastDig);
+}
+
+function multiplictionTable(){
+	var num1 = Number(document.getElementById("number1").value);
+	var num2 = Number(document.getElementById("number2").value);
+	for(i=1;i<=num2;i++){
+		product = num1*i;
+		arrayprint.push(num1+" * "+i+" = "+product);
+	}
+	output("innerDiv",arrayprint)
+}
+
+function naturalNumbers(){
+	var number = Number(document.getElementById("number").value);
+	for(i=1;i<=number;i++){
+		arrayprint.push(i);
+	}
+	output("innerDiv",arrayprint);
+}
+
+
+function naturalNumbersReverse(){
+	var number = Number(document.getElementById("number").value);
+	for(i=number;i>=1;i--){
+		arrayprint.push(i);
+	}
+	output("innerDiv",arrayprint);
+}
+
+
