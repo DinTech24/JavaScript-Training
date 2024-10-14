@@ -327,4 +327,482 @@ function naturalNumbersReverse(){
 	output("innerDiv",arrayprint);
 }
 
+function isDivisibleBy(){
+	var number = Number(document.getElementById("number").value);
+	for(i=1;i<=number;i++){
+		if(i%5 == 0 && i%11 == 0){
+			arrayprint.push(i);
+		}
+	}
+	output("innerDiv",arrayprint);	
+}
 
+
+function findOdd(){
+	var number = Number(document.getElementById("number").value);
+	for(i=1;i<=number;i++){
+		if(i%2 != 0){
+			arrayprint.push(i);
+		}
+	}
+	output("innerDiv",arrayprint);	
+}
+
+
+function digitProduct(){
+	var number = document.getElementById("number").value; 
+	num = Number(number)
+	var numLength = number.length;
+	var lastDig = 0;
+	product = 1;
+	for(i=0;i<numLength;i++){
+		lastDig=num%10;
+		product *= lastDig;
+		num = Math.floor(num/10);
+	}
+	output("innerDiv",product);
+	
+}
+
+
+function isPalindrome(){
+	var string = document.getElementById("string").value; 
+	var stringrev = string.split('').reverse().join('');
+	if(string === stringrev){
+		output("innerDiv","String is Palindrome");
+	}
+	else{
+		output("innerDiv","String is Not Palindrome");		
+	}
+}
+
+function isPerfect(){
+	var number = Number(document.getElementById("number").value);
+	sum = 0;
+	for(i=1;i<number;i++){
+		if(number%i == 0){
+			sum+=i;
+		}
+	}
+	if(number == sum){
+		output("innerDiv","Number is perfect");	
+	}
+	else{
+		output("innerDiv","Number is not perfect");	
+	}
+}
+
+
+function isPositive(){
+	var number = Number(document.getElementById("number").value);
+	if(number == 0){
+		output("innerDiv","Number is 0, neither positive nor negative");
+	}
+	else if(number > 0){
+		output("innerDiv","Number is positive");
+	}
+	else{
+		output("innerDiv","Number is negative");
+	}
+}
+
+
+function countNotes(){
+	var amount = Number(document.getElementById("number").value);
+	var notes = [500,200,100,50,20,10,5,1];
+	for(let i in notes){
+		var flag = amount/notes[i];
+		if(flag > 0){
+			arrayprint.push(notes[i]+" Notes = "+Math.floor(flag));
+			amount = amount - (notes[i] * Math.floor(flag));
+		}
+	}
+	output("innerDiv",arrayprint)
+}
+
+
+function findEven(){
+	var number = Number(document.getElementById("number").value);
+	for(i=1;i<=number;i++){
+		if(i%2 == 0){
+			arrayprint.push(i);
+		}
+	}
+	output("innerDiv",arrayprint);	
+}
+
+
+
+function naturalSumAverage(){
+	var number = Number(document.getElementById("number").value);
+	var sum = 0;
+	for(i=1;i<=number;i++){
+		sum += i;
+	}
+	var average = sum /number; 
+	output("innerDiv","Sum is " +sum+ " & Average is " +average);
+}
+
+
+function evenSum(){
+	var number = Number(document.getElementById("number").value);
+	var sum = 0;
+	for(i=1;i<=number;i++){
+		if(i%2 == 0){
+			sum += i;
+		}
+	}
+	output("innerDiv",sum);
+}
+
+function evenOddSum(){
+	var number = Number(document.getElementById("number").value);
+	var Oddsum = 0;
+	var Evensum = 0;
+	for(i=1;i<=number;i++){
+		if(i%2 == 0){
+			Evensum += i;
+		}
+		else{
+			Oddsum += i;
+		}
+	}
+	output("innerDiv","Sum of Odd number is "+Oddsum+ " & Sum of Even number is "+Evensum);
+}
+
+
+function electricityBill(){
+	var totalTariff = 0;
+	var tariff200 = 0;
+	var tariff100 = 0;
+	var tarifffir50 = 0;
+	var tariff50 = 0;
+	var diffunits = 0;
+	var totalUnits = Number(document.getElementById("number").value);
+	var units = totalUnits;
+	var totalAmount = 0;
+	if(units > 200){
+		diffunits = units - 200;
+		tariff200 = diffunits * 7.25;
+		units = units - diffunits;
+	}
+	if(units > 100 && units <= 200 ){
+		diffunits = units - 100;
+		tariff100 = diffunits * 5.65;
+		units = units - diffunits;
+	}
+	if(units > 50 && units <= 100){
+		diffunits = units - 50;
+		tarifffir50 = diffunits * 3.25;
+		units = units - diffunits;
+	}
+	if(units <= 50){
+		tariff50 = units * 2.60;
+	}
+	totalAmount = tariff200 + tariff100 + tarifffir50 + tariff50;
+	if(totalUnits > 700){
+		var totalAmount = totalAmount + (totalAmount / 200);
+		output("innerDiv",totalAmount);
+	}
+	else{
+		output("innerDiv",totalAmount);
+	}
+}
+
+
+function grossSalary(){
+	var basicSalary = Number(document.getElementById("number").value);
+	var grossSalary = 0;
+	var hra = 1;
+	var da = 1;
+	if(basicSalary <= 10000){
+		hra = basicSalary * (8/100);
+		da = basicSalary * (10/100);
+	}
+	else if(basicSalary <= 20000){
+		hra = basicSalary * (16/100);
+		da = basicSalary * (20/100);
+	}
+	else{
+		hra = basicSalary * (24/100);
+		da = basicSalary * (30/100);
+	}
+	grossSal = basicSalary + hra + da;
+	output("innerDiv",grossSal);
+}
+
+
+function coneAreaVolume(){
+	var length = Number(document.getElementById("number1").value);
+	var height = Number(document.getElementById("number2").value);
+	var radius = Number(document.getElementById("number3").value);
+	var PI = 22/7;
+	var coneSurfaceArea = PI * radius * length + PI * (radius ** 2);
+	var volume = 1/3 * (PI *(radius ** 2)* height);
+	var lateralSurfaceArea = PI * radius * length;
+	output("innerSpan1","Cone Surface Area : "+coneSurfaceArea);
+	output("innerSpan2","Volume : "+volume);
+	output("innerSpan3","Lateral Surface Area : "+lateralSurfaceArea);
+}
+
+
+function cubeAreaVolume(){
+	var length = Number(document.getElementById("number1").value);
+	var cubeSurfaceArea = 6 * (length ** 2);
+	var volume = length ** 3;
+	var lateralSurfaceArea = 4 * (length ** 2);
+	output("innerSpan1","Surface Area : "+cubeSurfaceArea);
+	output("innerSpan2","Volume : "+volume);
+	output("innerSpan3","Lateral Surface Area : "+lateralSurfaceArea);
+}
+
+
+function cuboidAreaVolume(){	
+	var length = Number(document.getElementById("number1").value);
+	var height = Number(document.getElementById("number2").value);
+	var width = Number(document.getElementById("number3").value);
+	var cuboidSurfaceArea = 2 * length * width + 2 * length * height + 2 * width * height;
+	var volume = length * width * height;
+	var lateralSurfaceArea = 2 * height * (length + width);
+	output("innerSpan1","Cuboid Surface Area : "+cuboidSurfaceArea);
+	output("innerSpan2","Volume : "+volume);
+	output("innerSpan3","Lateral Surface Area : "+lateralSurfaceArea);
+}
+
+
+function cylinderAreaVolume(){
+	var radius = Number(document.getElementById("number1").value);
+	var height = Number(document.getElementById("number2").value);
+	var PI = 22/7;
+	var cylinderSurfaceArea = 2 * PI * (radius ** 2) + 2 * PI * height;
+	var volume =  PI * (radius ** 2) * height;
+	var lateralSurfaceArea =  PI * (radius ** 2);
+	output("innerSpan1","Cone Surface Area : "+cylinderSurfaceArea);
+	output("innerSpan2","Volume : "+volume);
+	output("innerSpan3","Top or Bottom Surface Area : "+lateralSurfaceArea);
+}
+
+
+function sphereAreaVolume(){
+	var radius = Number(document.getElementById("number1").value);
+	var PI = 22/7;
+	var sphereSurfaceArea = 4 * PI * (radius ** 2) ;
+	var volume =  4 * PI * (radius ** 3);
+	var radius =  Math.sqrt(sphereSurfaceArea)/4 * PI;
+	output("innerSpan1","Cone Surface Area : "+sphereSurfaceArea);
+	output("innerSpan2","Volume : "+volume);
+	output("innerSpan3","Top or Bottom Surface Area : "+radius);
+}
+
+
+function countDigits(){
+	var number = document.getElementById("number").value; 
+	var numLength = number.length;
+	output("innerDiv",numLength);
+	
+}
+
+
+function fibonacci(){
+	var number = document.getElementById("number").value;
+	var num1 = 0;
+	var num2 = 1; 
+	for(i=0;i<number;i++){
+		arrayprint.push(num1);
+		var flag = num1
+		num1 = num2;
+		num2 = flag + num2;
+	}
+	output("innerDiv",arrayprint);
+}
+
+function menuOperation(){
+	var menu = Number(document.getElementById("case").value);
+	var number1 = Number(document.getElementById("number1").value);
+	var number2 = Number(document.getElementById("number2").value);
+	switch(menu){
+		case 1:output("innerDiv",number1 + number2);
+		break;
+
+		case 2:output("innerDiv",number1 - number2);
+		break;
+
+		case 3:output("innerDiv",number1 * number2);
+		break;
+
+		case 4:output("innerDiv",number1 / number2);
+		break;
+
+		case 5:output("menuDiv","Code Exited");
+		break;
+	}
+}
+
+
+function isNumberPalindrome(){
+	var number = document.getElementById("number").value; 
+	num = Number(number)
+	var numLength = number.length;
+	var lastDig = 0;
+	var strnum ="";
+	for(i=0;i<numLength;i++){
+		lastDig = num%10;
+		strnum += lastDig;
+		num = Math.floor(num/10);
+	}
+	if(strnum == number){
+		output("innerDiv","Number is Palindrome");
+	}
+	else{
+		output("innerDiv","Number is not Palindrome");
+	}
+}
+
+
+function concatString(){
+	var string1 = document.getElementById("string1").value;
+	var string2 = document.getElementById("string2").value;
+	output("innerDiv",string1 + string2);
+}
+
+
+function convertToAscii(){
+	var char = document.getElementById("string").value;
+	output("innerDiv",char.charCodeAt(0));
+} 
+
+
+function concatStringMeth(){
+	var string1 = document.getElementById("string1").value;
+	var string2 = document.getElementById("string2").value;
+	output("innerDiv",string1.concat(string2));
+}
+
+
+function stringLastChar(){
+	var string = document.getElementById("string").value;
+	var length = string.length;
+	output("innerDiv",string.charAt(length-1));
+}
+
+
+function stringMiddleChar(){
+	var string = document.getElementById("string").value;
+	var length = string.length;
+	if(length % 2 == 0){
+		output("innerDiv","String should have a perfect middle");
+	}
+	else{
+		output("innerDiv",string.charAt((length-1)/2));
+	}
+}
+
+
+function printStringChars(){
+	var string = document.getElementById("string").value;
+	var splittedString = [];
+	splittedString.push(string.split(""));
+	output("innerDiv",splittedString);
+}
+
+
+function stringLengthMethod(){
+	var string = document.getElementById("string").value;
+	output("innerDiv",string.length);
+}
+
+function stringLength(){
+	var count = 0;
+	var string = document.getElementById("string").value;
+	for(let i in string){
+		count++
+	}
+	output("innerDiv",count);
+}
+
+
+function characterIndex(){
+	var string = document.getElementById("string").value;
+	var char = document.getElementById("char").value;
+	output("innerDiv",string.indexOf(char));
+}
+
+
+function characterIndex(){
+	var string = document.getElementById("string").value;
+	var char = document.getElementById("char").value;
+	output("innerDiv",string.indexOf(char));
+}
+
+
+function characterOccurence(){
+	var string = document.getElementById("string").value;
+	var char = document.getElementById("char").value;
+	var count =0;
+	for(let i in string){
+		if(string.charAt(i) == char){
+			count ++
+		}
+	}
+	output("innerDiv",count);
+}
+
+
+
+function subStringOccurence(){
+	var string = document.getElementById("string").value;
+	var subString = document.getElementById("subString").value;
+	var subLength = subString.length;
+	if(string.substring(0,subLength) == subString){
+		output("innerDiv","sub-String is prefix");
+	}
+	else{
+		output("innerDiv","sub-String is not prefix");
+	}
+}
+
+
+function subStringReplace(){
+	var string = document.getElementById("string").value;
+	var subReplaceString = document.getElementById("subReplaceString").value;
+	var subString = document.getElementById("subString").value;
+	output("innerDiv",string.replace(subReplaceString,subString));
+}
+
+
+function reverseStringcase(){
+	var string = document.getElementById("string").value;
+	if(string.charCodeAt(0) >=65 && string.charCodeAt(0) <=90){
+		output("innerDiv",string.toLowerCase());
+	}
+	else{
+		output("innerDiv",string.toUpperCase());
+	}
+}
+
+
+
+function reverseVowels(){
+	var vowelArray = [];
+	var vowels = ["a","e","i","o","u"]; 
+	var string = document.getElementById("string").value;
+	for(let i in string){
+		if(vowels.includes(string[i])){
+			vowelArray.push(string[i]);
+			console.log(vowelArray);
+		}
+	}
+	for(j=(vowelArray.length)-1;j>=0;j--){
+		for(let k in string){
+			if(vowels.includes(string[k])){
+				console.log(string[k]);
+				console.log(vowelArray[j]);
+				var string = string.replace(string[k],vowelArray[j]);
+				console.log(string);
+				vowelArray.pop();
+				break;
+			}
+		}
+	}
+	output("innerDiv",string);
+}
