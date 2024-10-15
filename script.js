@@ -191,6 +191,29 @@ function isPrime(){
 }
 
 
+function courseEligiblity(){
+	var maths = Number(document.getElementById("number1").value); 
+	var physics = Number(document.getElementById("number2").value); 
+	var chemistry = Number(document.getElementById("number3").value); 
+
+	if(maths>65 && physics>=55 && chemistry>=50){
+		if(maths+physics+chemistry >=190){
+			output("innerDiv","He is Eligible");
+		}
+		else if(maths+physics >=140){
+			output("innerDiv","He is Eligible");
+		}
+		else{
+			output("innerDiv","He is not Eligible");
+		}
+	}
+	else{
+		output("innerDiv","He is not Eligible");
+	}
+	
+}
+
+
 function dayInWeek(){
 	var number = Number(document.getElementById("number1").value);
 	switch(number){
@@ -671,6 +694,19 @@ function convertToAscii(){
 	output("innerDiv",char.charCodeAt(0));
 } 
 
+function convertByteToStr(){
+	var array =[72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100];
+	var wordArr = [];
+	var result ="";
+	for(i=0;i<=array.length-1;i++){
+		wordArr.push(String.fromCharCode(array[i]));
+	}
+	for(let i in wordArr){
+		result += wordArr[i];
+	}
+	output("innerDiv",result);
+}
+
 
 function concatStringMeth(){
 	var string1 = document.getElementById("string1").value;
@@ -781,28 +817,240 @@ function reverseStringcase(){
 }
 
 
-
 function reverseVowels(){
 	var vowelArray = [];
+	var array = [];
 	var vowels = ["a","e","i","o","u"]; 
+	var str = "";
 	var string = document.getElementById("string").value;
 	for(let i in string){
 		if(vowels.includes(string[i])){
 			vowelArray.push(string[i]);
-			console.log(vowelArray);
 		}
 	}
-	for(j=(vowelArray.length)-1;j>=0;j--){
-		for(let k in string){
-			if(vowels.includes(string[k])){
-				console.log(string[k]);
-				console.log(vowelArray[j]);
-				var string = string.replace(string[k],vowelArray[j]);
-				console.log(string);
-				vowelArray.pop();
+	for(let j in string){
+		if(vowels.includes(string[j])){
+			var arrvow = vowelArray.pop();
+			array.push(arrvow);
+		}
+		else{
+			array.push(string[j]);
+		}
+	}
+	for(let k in array){
+		str = str + array[k];
+	}
+	output("innerDiv",str);
+}
+
+
+
+function countVowels(){
+	var string = document.getElementById("string").value;
+	var vcount =0;
+	var ccount =0;
+	var vowels = ["a","e","i","o","u","A","E","I","O","U"];
+	for(let i in string){
+		if(vowels.includes(string[i])){
+			vcount+=1;
+		}
+		else if(string[i] == " "){
+			continue;
+		}
+		else{
+			ccount+=1;
+		}
+	}
+	output("innerSpan1","Vowels Count = "+vcount);
+	output("innerSpan2","Consonents Count = "+ccount);
+}
+
+
+
+function isClosed(){
+	var string = document.getElementById("string").value;
+	var closeArr =["}","]",")"];
+	var openArr =["{","[","("];
+	var newArr = [];
+	var flag = 1;
+	var ocount = 0;
+	var ccount = 0;
+	for(let i in string){
+		newArr.push(string[i]);
+	}
+	for(i=0;i<newArr.length;i++){
+		for(j=0;j<closeArr.length;j++){
+			if(newArr.indexOf(closeArr[j])<newArr.indexOf(openArr[j])){
+				flag = flag * 0;
+			}
+			if(string[i] == openArr[j]){
+				if(string.includes(closeArr[j])){
+					flag = flag * 1;
+					ccount += 1;
+				}
+				else{
+					flag = flag * 0;	
+				}
+			}
+			if(string[i] == closeArr[j]){
+				if(string.includes(openArr[j])){
+					flag = flag * 1;
+					ocount += 1;
+				}
+				else{
+					flag = flag * 0;
+				}	
+			}
+			
+		}
+
+	}
+	if(ocount != ccount){
+		flag = flag * 0;
+	}
+	if(flag == 0){
+		output("innerDiv","Not closed correctly")
+	}
+	else{
+		output("innerDiv","No error")
+	}
+}
+
+
+
+
+function largestSmallestWord(){
+	var string = document.getElementById("string").value;
+	string = string+" ";
+	var word ="";
+	var array1 =[];
+	var array2 =[];
+	for(let i in string){
+		word = word + string[i];
+		if(string[i] == " "){
+		array1.push(word);
+		array2.push(word.length);
+		word ="";
+		}
+	console.log(array1);
+	}
+	array1.sort((n1,n2)=>n1.length-n2.length);
+	console.log(array1);
+	output("innerSpan1","Largest is "+array1[array1.length-1]);
+	output("innerSpan2","Smallest is "+array1[0]);
+}
+
+
+function replaceAlphabets(){
+	var string = document.getElementById("string").value;
+	var array = [];
+	var newstring = "";
+	for(i=0;i<=string.length-1;i++){
+		array.push(string.charCodeAt(i));
+	}
+	for(i=0;i<array.length;i++){
+		array.splice(i, 1, String.fromCharCode(array[i] + 1));
+	}
+	for(let i in array){
+		var newstring = newstring + array[i];
+	}
+	output("innerSpan1",newstring);
+}
+
+
+
+function findMissingAlpha(){
+	var string = document.getElementById("string").value;
+	var array = [];
+	var result ="";
+	var dupliarray = [];
+	for(let i in string){
+		array.push(string.charCodeAt(i));
+		dupliarray.push(string.charCodeAt(i));
+	}
+	console.log(array);
+	for(j=0;j<dupliarray.length;j++){
+		if(dupliarray[j]+1 == dupliarray[j+1]){
+			
+		}
+		else{
+			if(dupliarray[j] == array[array.length-1]){
 				break;
 			}
+			dupliarray.splice(j+1,0,dupliarray[j]+1);	
+
 		}
 	}
-	output("innerDiv",string);
+	for(let x in dupliarray){
+		result = result+ String.fromCharCode(dupliarray[x]);
+	}
+	output("innerDiv",result);
+}
+
+
+
+function deleteConsonents(){
+	var string = document.getElementById("string").value;
+	var vowels = ["a","e","i","o","u","A","E","I","O","U"];
+	for(let i in string){
+		if(vowels.includes(string[i])){
+			continue;
+		}
+		else{
+			string = string.replace(string[i]," ")
+		}
+	}
+	output("innerSpan1",string);
+}
+
+
+function maximumOccurance(){
+	var string = document.getElementById("string").value;
+	var count =0;
+	for(let i in string){
+		for(let j in string ){
+			if(string[i] == string[j]){
+			string.replace(string[j]," ");
+			count =count+1;
+			}
+		}
+		arrayprint.push(string[i]+ " = " +count)
+		count =0;
+	}
+	output("innerDiv",arrayprint);
+
+}
+
+
+function replacePalindromeSubstring(){
+	var string = document.getElementById("string").value;
+	string = string + " ";
+	var substring ="";
+	var stringArray=[];
+	for(let i in string){
+		if(string[i]==" "){
+			if(substring == (substring.split("").reverse().join(""))){
+				for(let j in substring){
+					substring = substring.replace(substring[j],"*");
+				}
+					stringArray.push(substring+" ");
+					console.log(stringArray)
+					substring = "";
+			}
+			else{
+				stringArray.push(substring+" ");
+				substring = "";
+			}
+		}
+		else{
+			substring += string[i];
+			console.log(substring)
+		}
+	}
+	console.log(stringArray);
+	var replacedString = "";
+	for(let k in stringArray){
+		replacedString = replacedString + stringArray[k];
+	}
+	output("innerDiv",replacedString);
 }
