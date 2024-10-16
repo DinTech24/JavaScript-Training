@@ -867,6 +867,31 @@ function countVowels(){
 
 
 
+function countAlphaSpecial(){
+	var special = ["@","#","$","%","^","&","*","(",")","{","}","-","+","!","=","_","<",">","/","?"];
+	var digits = ["0","1","2","3","4","5","6","7","8","9"];
+	var string = document.getElementById("string").value;
+	var alphaCount = 0;
+	var digitCount = 0;
+	var specialCount = 0;
+	for(let i in string){
+		if(special.includes(string[i])){
+			specialCount += 1;
+		}
+		else if(digits.includes(string[i])){
+			digitCount += 1;
+		}
+		else{
+			alphaCount += 1;
+		}
+	}
+	output("innerSpan1","Special Characters Count = "+specialCount);
+	output("innerSpan2","Digits Count = "+digitCount);
+	output("innerSpan3","Alphabets Count = "+alphaCount);
+}
+
+
+
 function isClosed(){
 	var string = document.getElementById("string").value;
 	var closeArr =["}","]",")"];
@@ -949,7 +974,12 @@ function replaceAlphabets(){
 		array.push(string.charCodeAt(i));
 	}
 	for(i=0;i<array.length;i++){
-		array.splice(i, 1, String.fromCharCode(array[i] + 1));
+		if(array[i] == 122){
+			array.splice(i, 1,"a");
+		}
+		else{
+			array.splice(i, 1, String.fromCharCode(array[i] + 1));
+		}
 	}
 	for(let i in array){
 		var newstring = newstring + array[i];

@@ -949,7 +949,12 @@ function replaceAlphabets(){
 		array.push(string.charCodeAt(i));
 	}
 	for(i=0;i<array.length;i++){
-		array.splice(i, 1, String.fromCharCode(array[i] + 1));
+		if(array[i] == 122){
+			array.splice(i, 1,"a");
+		}
+		else{
+			array.splice(i, 1, String.fromCharCode(array[i] + 1));
+		}
 	}
 	for(let i in array){
 		var newstring = newstring + array[i];
